@@ -60,16 +60,16 @@ module.exports = {
                 {
                     if(!user)
                     {
-                        res.send({status:"unauthentic",error:"Email-Password combination does not exist"})
+                        res.send({status:"unauthentic",error:"Email is not registered"})
                     }
                     else
                     {
                         if(password==user.Password)
                         {
-                            res.send({status:"authentic",error:"Email-Password combination does not exist"})
+                            res.send({status:"authentic"})
                         }
                         else{
-                            res.send({status:"unauthentic"})
+                            res.send({status:"unauthentic",error:"Email-Password combination does not exist"})
                         }
                     }
                 }
