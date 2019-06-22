@@ -129,7 +129,21 @@ module.exports = {
                             if(err)
                             {
                                 res.send(err);
-                            }
+                            }  
+                        })
+                    }
+                    else
+                    {
+                        UserManagment.update({id:id})
+                        .set({
+                            Status:"Employee detail did not match, send again"
+                        })
+                        .exec(function(err)
+                        {
+                            if(err)
+                            {
+                                res.send(err);
+                            }  
                         })
                     }
                     res.send({status:"success"})
