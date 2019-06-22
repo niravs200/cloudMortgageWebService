@@ -14,7 +14,6 @@ module.exports = {
         var password = req.param("password");
         var address = req.param("address");
         var phoneNumber = req.param("phoneNumber");
-        var companyName = req.param("companyName");
         var tenure = req.param("tenure");
         var salary = req.param("salary");
         
@@ -22,7 +21,6 @@ module.exports = {
             Password:password,
             Address:address,
             Phone_Number:phoneNumber,
-            Company_Name:companyName,
             Tenure:tenure,
             Salary:salary,
             Status:"Waiting for employee response"})
@@ -100,9 +98,6 @@ module.exports = {
     {
         var name = req.param("name");
         var email = req.param("email");
-        var address = req.param("address");
-        var phoneNumber = req.param("phoneNumber");
-        var companyName = req.param("companyName");
         var tenure = req.param("tenure");
         var salary = req.param("salary");
         var id = req.param("id");
@@ -116,11 +111,12 @@ module.exports = {
                 }
                 else
                 {
+                    if(!user)
+                    {
+                        return res.send({status:"fail",error:"Invalid id"})
+                    }
                     if(name==user.Name && 
                         email==user.Email && 
-                        address==user.Address && 
-                        phoneNumber==user.Phone_Number && 
-                        companyName==user.Company_Name &&
                         tenure==user.Tenure &&
                         salary==user.Salary)
                     {

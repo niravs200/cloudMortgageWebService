@@ -34,11 +34,6 @@ module.exports = {
       required:true
     },
 
-    Company_Name: {
-      type : "string",
-      required:true
-    },
-
     Salary: {
       type:"number",
       required:true
