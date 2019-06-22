@@ -130,12 +130,9 @@ module.exports = {
                             {
                                 res.send(err);
                             }
-                            else
-                            {
-                                res.send({status:"success"})
-                            }
                         })
                     }
+                    res.send({status:"success"})
                 }
 
             })
