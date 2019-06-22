@@ -39,6 +39,16 @@ module.exports = {
       required:true
     },
 
+    Salary: {
+      type:"number",
+      required:true
+    },
+
+    Tenure: {
+      type:"number",
+      required:true
+    },
+
     Status: {
       type : "string",
       required:true

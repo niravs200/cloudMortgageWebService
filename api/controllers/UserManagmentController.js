@@ -15,8 +15,17 @@ module.exports = {
         var address = req.param("address");
         var phoneNumber = req.param("phoneNumber");
         var companyName = req.param("companyName");
+        var tenure = req.param("tenure");
+        var salary = req.param("salary");
         
-        UserManagment.create({Name:name,Email:email,Password:password,Address:address,Phone_Number:phoneNumber,Company_Name:companyName,Status:"Waiting for employee response"})
+        UserManagment.create({Name:name,Email:email,
+            Password:password,
+            Address:address,
+            Phone_Number:phoneNumber,
+            Company_Name:companyName,
+            Tenure:tenure,
+            Salary:salary,
+            Status:"Waiting for employee response"})
             .exec(function(err){
                 if(err)
                 {
@@ -81,11 +90,7 @@ module.exports = {
                     res.send(err);
                 }
                 else
-                {
-                    if(!user)
-                    {
-                        res.send({status:"unauthentic",error:"Email-Password combination does not exist"})
-                    }   
+                {   
                     res.send(user)
                 }
             })
@@ -98,6 +103,8 @@ module.exports = {
         var address = req.param("address");
         var phoneNumber = req.param("phoneNumber");
         var companyName = req.param("companyName");
+        var tenure = req.param("tenure");
+        var salary = req.param("salary");
         var id = req.param("id");
 
         UserManagment.findOne({id:id})
@@ -109,10 +116,29 @@ module.exports = {
                 }
                 else
                 {
-                    if(name==user.Name && email==user.Email && address==user.Address && phoneNumber==user.Phone_Number && companyName==user.Company_Name)
+                    if(name==user.Name && 
+                        email==user.Email && 
+                        address==user.Address && 
+                        phoneNumber==user.Phone_Number && 
+                        companyName==user.Company_Name &&
+                        tenure==user.Tenure &&
+                        salary==user.Salary)
                     {
                         UserManagment.update({id:id})
-                        .set()
+                        .set({
+                            Status:"Application Accepted"
+                        })
+                        .exec(function(err)
+                        {
+                            if(err)
+                            {
+                                res.send(err);
+                            }
+                            else
+                            {
+                                res.send({status:"success"})
+                            }
+                        })
                     }
                 }
 
